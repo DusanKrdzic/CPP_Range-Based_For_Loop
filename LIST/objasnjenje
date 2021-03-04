@@ -1,0 +1,40 @@
+
+ranged-base for loop
+
+niz<M> v;
+
+for (T x:v){
+...
+}//x kupi elemente niza V
+
+T moze i ne mora biti tipa M.. Zavisi od implemetacije klasa. tj od povratne vrednosti operator* funkcije
+
+Gornji izraz ekvivalentan:
+
+for(auto b=v.begin(),e=e.end();b!=e;++b){
+
+T x=*b; //preklopljen operator * vraca tip T
+
+...
+}
+
+b i e su najcesce nesto sto je tipa Iterator. da bi to funkcionisalo 
+ta klasa iterator mora imati preklopljene operatore != ++ *
+
+
+x je zapravo onog tipa koji vraca preklopljen operator * u klasi Iterator. Npr vector moze biti
+vector Node-ova a x da bude int, ako operator* vraca npr neko polje iz Node koje je int
+
+
+
+bool operator!=(const Iterator&);
+T& operator*();
+Iterator& operator++();
+
+klasa vector mora imati funkcije begin i end
+
+Iterator begin();
+
+Iterator end();
+
+Ovako funkcionizu i iteratori u STL containerima kao i List implementacija
