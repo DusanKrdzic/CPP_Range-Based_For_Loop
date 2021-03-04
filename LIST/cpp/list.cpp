@@ -68,8 +68,7 @@ int &List::Iterator::operator*()
 List::Iterator &List::Iterator::operator++()
 {
 
-    if (this->current != nullptr)
-        this->current = this->current->next;
+    this->current = this->current->next;
 
     return *this;
 };
