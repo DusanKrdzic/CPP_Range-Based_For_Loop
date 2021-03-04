@@ -78,5 +78,14 @@ int main()
 
     f(list);
 
+    List help;
+
+    for (auto x : help)
+    {
+        cout << "EMPTY LIST" << endl;
+    }
+
+    cout << "END" << endl;
+
     return 0;
 }
