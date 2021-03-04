@@ -47,11 +47,12 @@ List::Iterator List::begin()
 
 List::Iterator List::end()
 {
-
+    /*
     if (this->tail != nullptr)
         return List::Iterator(this->tail->next);
     else
-        return List::Iterator(nullptr);
+    */
+    return List::Iterator(nullptr);
 }
 
 bool List::Iterator::operator!=(const List::Iterator &it)
