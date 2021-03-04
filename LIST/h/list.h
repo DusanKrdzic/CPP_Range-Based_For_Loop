@@ -33,9 +33,6 @@ public:
 
         ~Iterator();
 
-        //u slucaju da je Iterator u private delu
-        //friend class List;
-        //friend int main();
     };
 
     List();
