@@ -48,9 +48,10 @@ List::Iterator List::begin()
 List::Iterator List::end()
 {
 
-if(this->tail!=nullptr)
-    return List::Iterator(this->tail->next);
-else return List::Iterator(nullptr);
+    if (this->tail != nullptr)
+        return List::Iterator(this->tail->next);
+    else
+        return List::Iterator(nullptr);
 }
 
 bool List::Iterator::operator!=(const List::Iterator &it)
@@ -67,8 +68,8 @@ int &List::Iterator::operator*()
 List::Iterator &List::Iterator::operator++()
 {
 
-if(this->current!=nullptr)
-    this->current = this->current->next;
+    if (this->current != nullptr)
+        this->current = this->current->next;
 
     return *this;
 };
