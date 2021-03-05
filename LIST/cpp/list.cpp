@@ -21,7 +21,7 @@ List::~List()
     }
 }
 
-List &List::push_back(const Node &n)
+List &List::push_back(const Node &&n)
 {
 
     if (this->head == nullptr)
