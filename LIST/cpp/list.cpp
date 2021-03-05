@@ -8,6 +8,57 @@ using namespace std;
 
 List::List() : head(nullptr), tail(nullptr) {}
 
+List::List(const List &l)
+{
+
+    Node *n = l.head;
+    Node *tek = nullptr;
+    while (n)
+    {
+
+        if (this->head == nullptr)
+        {
+            this->head = new Node(n->v);
+            tek = this->head;
+        }
+        else
+        {
+
+            tek->next = new Node(n->v);
+
+            tek = tek->next;
+        }
+
+        if (n->next == nullptr)
+            this->tail = tek;
+
+        n = n->next;
+    }
+}
+
+List::List(List &&l)
+{
+
+    this->head = l.head;
+    this->tail = l.tail;
+    l.head = nullptr;
+    l.tail = nullptr;
+}
+
+List::Iterator::Iterator(const List::Iterator &it)
+{
+
+    this->current = new Node(it.current->v);
+}
+
+List::Iterator::Iterator(Iterator &&it)
+{
+
+    this->current = it.current;
+    it.current = nullptr;
+    cout << "Dule car" << endl;
+}
+
 List::~List()
 {
 
