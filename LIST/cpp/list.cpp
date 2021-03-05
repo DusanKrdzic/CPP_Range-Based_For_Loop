@@ -21,19 +21,19 @@ List::~List()
     }
 }
 
-List &List::push_back(const Node &&n)
+List &List::push_back(const int &v)
 {
 
     if (this->head == nullptr)
     {
 
-        head = new Node(n.v);
+        head = new Node(v);
         tail = head;
     }
     else
     {
 
-        tail->next = new Node(n.v);
+        tail->next = new Node(v);
         tail = tail->next;
     }
     return *this;
