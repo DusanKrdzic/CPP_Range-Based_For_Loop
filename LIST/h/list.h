@@ -25,6 +25,9 @@ public:
     public:
         Iterator(Node *p) : current(p) {}
 
+        Iterator(const Iterator&);
+        Iterator(Iterator&&);
+
         bool operator!=(const Iterator &);
 
         int &operator*();
@@ -35,6 +38,11 @@ public:
     };
 
     List();
+
+    List(const List&);
+    List(List&&);
+
+
 
     List &push_back(const int &);
 
