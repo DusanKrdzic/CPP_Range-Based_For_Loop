@@ -32,12 +32,11 @@ public:
         Iterator &operator++();
 
         ~Iterator();
-
     };
 
     List();
 
-    List &push_back(const Node &&);
+    List &push_back(const int &);
 
     Iterator begin();
 
