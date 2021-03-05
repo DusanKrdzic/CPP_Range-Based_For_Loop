@@ -37,7 +37,7 @@ public:
 
     List();
 
-    List &push_back(const Node &);
+    List &push_back(const Node &&);
 
     Iterator begin();
 
