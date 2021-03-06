@@ -56,7 +56,6 @@ List::Iterator::Iterator(Iterator &&it)
 
     this->current = it.current;
     it.current = nullptr;
-    cout << "Dule car" << endl;
 }
 
 List::~List()
@@ -69,6 +68,7 @@ List::~List()
         head = head->next;
 
         delete temp;
+        temp = nullptr;
     }
 }
 
@@ -129,4 +129,5 @@ List::Iterator::~Iterator()
 {
 
     delete this->current;
+    this->current = nullptr;
 }
