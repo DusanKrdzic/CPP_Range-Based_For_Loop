@@ -76,6 +76,31 @@ int main()
 
     cout << endl;
 
+    List list1;
+    list1 = list;
+
+    for (int x : list1)
+    {
+
+        cout << x << ' ';
+    }
+
+    cout << endl;
+
+    List list2 = move(list1);
+
+    for (int x : list2)
+    {
+
+        cout << x << ' ';
+    }
+
+    cout << endl;
+
+    list1 = List();
+
+    cout << endl;
+
     f(list);
 
     List help;

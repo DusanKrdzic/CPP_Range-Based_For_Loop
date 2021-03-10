@@ -38,11 +38,50 @@ List::List(const List &l)
 
 List::List(List &&l)
 {
-
+    cout<<"MOVE Constructor"<<endl;
     this->head = l.head;
     this->tail = l.tail;
     l.head = nullptr;
     l.tail = nullptr;
+}
+
+List &List::operator=(const List &l)
+{
+    Node *n = l.head;
+    Node *tek = nullptr;
+    while (n)
+    {
+
+        if (this->head == nullptr)
+        {
+            this->head = new Node(n->v);
+            tek = this->head;
+        }
+        else
+        {
+
+            tek->next = new Node(n->v);
+
+            tek = tek->next;
+        }
+
+        if (n->next == nullptr)
+            this->tail = tek;
+
+        n = n->next;
+    }
+
+    return *this;
+}
+
+List &List::operator=(List &&l)
+{
+    cout<<"MOVE operator="<<endl;
+    this->head = l.head;
+    this->tail = l.tail;
+    l.head = nullptr;
+    l.tail = nullptr;
+    return *this;
 }
 
 List::Iterator::Iterator(const List::Iterator &it)
@@ -56,6 +95,21 @@ List::Iterator::Iterator(Iterator &&it)
 
     this->current = it.current;
     it.current = nullptr;
+}
+
+List::Iterator &List::Iterator::operator=(const List::Iterator &it)
+{
+
+    this->current = new Node(it.current->v);
+    return *this;
+}
+
+List::Iterator &List::Iterator::operator=(List::Iterator &&it)
+{
+
+    this->current = it.current;
+    it.current = nullptr;
+    return *this;
 }
 
 List::~List()
@@ -110,6 +164,12 @@ bool List::Iterator::operator!=(const List::Iterator &it)
 {
 
     return this->current != it.current;
+}
+
+bool List::Iterator::operator==(const List::Iterator &it)
+{
+
+    return this->current == it.current;
 }
 
 int &List::Iterator::operator*()
