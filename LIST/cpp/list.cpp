@@ -38,7 +38,7 @@ List::List(const List &l)
 
 List::List(List &&l)
 {
-    cout<<"MOVE Constructor"<<endl;
+    cout << "MOVE Constructor" << endl;
     this->head = l.head;
     this->tail = l.tail;
     l.head = nullptr;
@@ -47,40 +47,59 @@ List::List(List &&l)
 
 List &List::operator=(const List &l)
 {
-    Node *n = l.head;
-    Node *tek = nullptr;
-    while (n)
+    if (this != &l)
     {
 
-        if (this->head == nullptr)
+        delete this->head;
+        delete this->tail;
+        if (l.head != nullptr)
         {
-            this->head = new Node(n->v);
-            tek = this->head;
+            Node *n = l.head;
+            Node *tek = nullptr;
+
+            while (n)
+            {
+
+                if (this->head == nullptr)
+                {
+                    this->head = new Node(n->v);
+                    tek = this->head;
+                }
+                else
+                {
+
+                    tek->next = new Node(n->v);
+
+                    tek = tek->next;
+                }
+
+                if (n->next == nullptr)
+                    this->tail = tek;
+
+                n = n->next;
+            }
         }
         else
         {
-
-            tek->next = new Node(n->v);
-
-            tek = tek->next;
+            this->head = nullptr;
+            this->tail = nullptr;
         }
-
-        if (n->next == nullptr)
-            this->tail = tek;
-
-        n = n->next;
     }
-
     return *this;
 }
 
 List &List::operator=(List &&l)
 {
-    cout<<"MOVE operator="<<endl;
-    this->head = l.head;
-    this->tail = l.tail;
-    l.head = nullptr;
-    l.tail = nullptr;
+    cout << "MOVE operator=" << endl;
+    if (this != &l)
+    {
+        delete this->head;
+        delete this->tail;
+        this->head = l.head;
+        this->tail = l.tail;
+        l.head = nullptr;
+        l.tail = nullptr;
+    }
     return *this;
 }
 
@@ -99,16 +118,25 @@ List::Iterator::Iterator(Iterator &&it)
 
 List::Iterator &List::Iterator::operator=(const List::Iterator &it)
 {
-
-    this->current = new Node(it.current->v);
+    if (this != &it)
+    {
+        delete this->current;
+        if (it.current != nullptr)
+            this->current = new Node(it.current->v);
+        else
+            this->current = nullptr;
+    }
     return *this;
 }
 
 List::Iterator &List::Iterator::operator=(List::Iterator &&it)
 {
-
-    this->current = it.current;
-    it.current = nullptr;
+    if (this != &it)
+    {
+        delete this->current;
+        this->current = it.current;
+        it.current = nullptr;
+    }
     return *this;
 }
 
