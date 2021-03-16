@@ -47,11 +47,15 @@ List::List(List &&l)
 
 List &List::operator=(const List &l)
 {
+    cout << "Copy operator=" << endl;
+
     if (this != &l)
     {
 
         delete this->head;
         delete this->tail;
+        this->head = nullptr;
+        this->tail = nullptr;
         if (l.head != nullptr)
         {
             Node *n = l.head;
